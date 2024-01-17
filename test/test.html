@@ -2,34 +2,34 @@
 <html>
 <body>
 
-<table id="myTable">
-</table>
+    <table id="myTable">
+    </table>
 
-<script>
-// Ihr Array von Objekten
-var objekte = [
-    {Name: "Armbrust 1", Spezifikation: "Spec 1"},
-    {Name: "Armbrust 2", Spezifikation: "Spec 2"},
-    {Name: "Armbrust 3", Spezifikation: "Spec 3"}
-]
+    <script>
+    // Ihr Array von Objekten
+    var objekte = [
+        {Name: "Armbrust 1", Spezifikation: "Spec 1"},
+        {Name: "Armbrust 2", Spezifikation: "Spec 2"},
+        {Name: "Armbrust 3", Spezifikation: "Spec 3"}
+    ]
 
-// Zugriff auf die Tabelle
-var tabelle = document.getElementById("myTable");
+    // Zugriff auf die Tabelle
+    var tabelle = document.getElementById("myTable");
 
-// Loop durch jedes Objekt im Array
-for (var i = 0; i < objekte.length; i++) {
-    // Erstellen Sie eine neue Zeile
-    var zeile = tabelle.insertRow(-1);
+    // Loop durch jedes Objekt im Array
+    for (var i = 0; i < objekte.length; i++) {
+        // Erstellen Sie eine neue Zeile
+        var zeile = tabelle.insertRow(-1);
 
-    // Fügen Sie Zellen zur Zeile hinzu
-    var zelle1 = zeile.insertCell(0);
-    var zelle2 = zeile.insertCell(1);
+        // Fügen Sie Zellen zur Zeile hinzu
+        var zelle1 = zeile.insertCell(0);
+        var zelle2 = zeile.insertCell(1);
 
-    // Füllen Sie die Zellen mit Daten aus dem Objekt
-    zelle1.innerHTML = objekte[i].Name;
-    zelle2.innerHTML = objekte[i].Spezifikation;
-}
-</script>
+        // Füllen Sie die Zellen mit Daten aus dem Objekt
+        zelle1.innerHTML = objekte[i].Name;
+        zelle2.innerHTML = objekte[i].Spezifikation;
+    }
+    </script>
 
 </body>
 </html>
