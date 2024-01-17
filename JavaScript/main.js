@@ -101,16 +101,12 @@ for (let i = 0; i < crossbows.length; i++) {
     let zeile = tabelle.insertRow(-1);
     let zelle1 = zeile.insertCell(0);
     let zelle2 = zeile.insertCell(1);
-    let zeile1 = tabelle.insertRow(-1);
-    let zelle3 = zeile1.insertCell(0);
-    let zelle4 = zeile1.insertCell(1);
 
     let img = document.createElement('img');
     img.src = crossbows[i].Img;
 
     zelle1.appendChild(img);
     zelle2.innerHTML = "<h2>" + crossbows[i].Name + "</h2>"
-    zelle3.innerHTML = ""
 
     let ul = document.createElement('ul');
 
@@ -120,5 +116,5 @@ for (let i = 0; i < crossbows.length; i++) {
         ul.appendChild(li);
     }
 
-    zelle4.appendChild(ul)
+    zelle2.appendChild(ul)
 }
