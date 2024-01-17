@@ -2,18 +2,8 @@
     text-align: center;
 }
 
-.img {
-    width: 400px;
+h1 {
+    font-size: 50px;
+    text-decoration: underline;
 }
 
-table {
-    margin: auto;
-}
-
-.th {
-    font-size: 30px;
-}
-
-h3 {
-    font-size: 30px;
-}

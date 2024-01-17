@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<table id="myTable">
+</table>
+
+<script>
+// Ihr Array von Objekten
+var objekte = [
+    {Name: "Armbrust A", Spezifikation: "Spezifikation A"},
+    {Name: "Armbrust B", Spezifikation: "Spezifikation B"},
+    {Name: "Armbrust C", Spezifikation: "Spezifikation C"}
+];
+
+// Zugriff auf die Tabelle
+var tabelle = document.getElementById("myTable");
+
+// Loop durch jedes Objekt im Array
+for (var i = 0; i < objekte.length; i++) {
+    // Erstellen Sie eine neue Zeile
+    var zeile = tabelle.insertRow(-1);
+
+    // Fügen Sie Zellen zur Zeile hinzu
+    var zelle1 = zeile.insertCell(0);
+    var zelle2 = zeile.insertCell(1);
+
+    // Füllen Sie die Zellen mit Daten aus dem Objekt
+    zelle1.innerHTML = objekte[i].Name;
+    zelle2.innerHTML = objekte[i].Spezifikation;
+}
+</script>
+
+</body>
+</html>
