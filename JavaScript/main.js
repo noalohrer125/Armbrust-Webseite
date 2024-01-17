@@ -1,33 +1,33 @@
 const crossbows = [
     {
-        Name: "Ravin R26", Spezifikation: ""
+        Name: "Ravin R26", Spezifikation: "test"
     },
     {
-        Name: "TenPoint Nitro 505", Spezifikation: ""
+        Name: "TenPoint Nitro 505", Spezifikation: "test"
     },
     {
-        Name: "Mission SUB-1 XR", Spezifikation: ""
+        Name: "Mission SUB-1 XR", Spezifikation: "test"
     },
     {
-        Name: "Scorpyd Deathstalker 420", Spezifikation: ""
+        Name: "Scorpyd Deathstalker 420", Spezifikation: "test"
     },
     {
-        Name: "Barnett HyperGhost 425", Spezifikation: ""
+        Name: "Barnett HyperGhost 425", Spezifikation: "test"
     },
     {
-        Name: "CenterPoint Amped 415", Spezifikation: ""
+        Name: "CenterPoint Amped 415", Spezifikation: "test"
     },
     {
-        Name: "Wicked Ridge RDX 400", Spezifikation: ""
+        Name: "Wicked Ridge RDX 400", Spezifikation: "test"
     },
     {
-        Name: "PSE Thrive 400", Spezifikation: ""
+        Name: "PSE Thrive 400", Spezifikation: "test"
     },
     {
-        Name: "Excalibur Assassin 420 TD", Spezifikation: ""
+        Name: "Excalibur Assassin 420 TD", Spezifikation: "test"
     },
     {
-        Name: "BearX Saga 405", Spezifikation: ""
+        Name: "BearX Saga 405", Spezifikation: "test"
     }
 ];
 
