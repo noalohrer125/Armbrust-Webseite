@@ -1,3 +1,7 @@
+* {
+    background-color: #bdbdbd;
+}
+
 h1 {
     font-size: 50px;
     text-decoration: underline;
@@ -6,14 +10,17 @@ h1 {
 
 h2 {
     font-size: 35px;
+    text-decoration: underline;
 }
 
 h3 {
     font-size: 20px;
+    text-align: center;
 }
 
 img {
     width: 400px;
+    border-radius: 80px;
 }
 
 table {
@@ -22,4 +29,13 @@ table {
 
 ul {
     font-size: 20px;
+}
+
+.Sortierung {
+    font-size: 35px;
+}
+
+button {
+    border-radius: 10px;
+    font-size: 15px;
 }

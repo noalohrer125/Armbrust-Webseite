@@ -1,35 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossbows</title>
+    <link rel="stylesheet" href="../CSS/Stylesheet.css">
+    
+</head>
 <body>
-
-    <table id="myTable">
+    <h1>Crossbows</h1>
+    <div class="Sortierung">
+        <b>Sortierung</b>
+        <select name="Sortierung" id="Sortierung">
+            <option value="Auswahl">Ralevants</option>
+            <option value="Name (a-z)">Name (a-z)</option>
+            <option value="Name (a-z)">Name (z-a)</option>
+        </select>
+    </div>
+    <table id="table">
     </table>
-
-    <script>
-    // Ihr Array von Objekten
-    var objekte = [
-        {Name: "Armbrust 1", Spezifikation: "Spec 1"},
-        {Name: "Armbrust 2", Spezifikation: "Spec 2"},
-        {Name: "Armbrust 3", Spezifikation: "Spec 3"}
-    ]
-
-    // Zugriff auf die Tabelle
-    var tabelle = document.getElementById("myTable");
-
-    // Loop durch jedes Objekt im Array
-    for (var i = 0; i < objekte.length; i++) {
-        // Erstellen Sie eine neue Zeile
-        var zeile = tabelle.insertRow(-1);
-
-        // Fügen Sie Zellen zur Zeile hinzu
-        var zelle1 = zeile.insertCell(0);
-        var zelle2 = zeile.insertCell(1);
-
-        // Füllen Sie die Zellen mit Daten aus dem Objekt
-        zelle1.innerHTML = objekte[i].Name;
-        zelle2.innerHTML = objekte[i].Spezifikation;
-    }
-    </script>
-
+    <script src="../test/test.js"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@ const crossbows = [
             Hersteller: "Excalibur",
             Gewicht: "3.36 kg",
             Länge: "81 cm",
-            Zuggewicht: "185 lbs",
+            Zuggewicht: "mehr als 175 lbs",
             Schussgeschwindigkeit: "439 km/h",
             "Kraftaufwand beim Ziehn": "19 lbs",
             Leerschusssicherung: "ja"
@@ -90,72 +90,50 @@ const crossbows = [
             "Breite gespannt": "15.88 cm",
             "Breite ungespannt": "24.77 cm",
             Zuggewicht: "195 lbs",
-            Schussgeschwindigkeit: "123.44 km/h"
+            Schussgeschwindigkeit: "123.44 km/h km/h"
         }
     },
 ];
 
-function render_webside() {
-    let tabelle = document.getElementById("table");
 
-    while (tabelle.rows.length > 0) {
-    tabelle.deleteRow(0);
+
+let tabelle = document.getElementById("table");
+
+for (let i = 0; i < crossbows.length; i++) {
+    let zeile = tabelle.insertRow(-1);
+    let zelle1 = zeile.insertCell(0);
+    let zelle2 = zeile.insertCell(1);
+
+    let img = document.createElement('img');
+    img.src = crossbows[i].Img;
+
+    zelle1.appendChild(img);
+    zelle2.innerHTML = "<h2>" + crossbows[i].Name + "</h2>"
+
+    let ul = document.createElement('ul');
+
+    for (let key in crossbows[i].Spezifikationen) {
+        let li = document.createElement('li');
+        li.textContent = key + ": " + crossbows[i].Spezifikationen[key];
+        ul.appendChild(li);
     }
+    zelle2.appendChild(ul)
+}
 
-    for (let i = 0; i < crossbows.length; i++) {
-        let zeile = tabelle.insertRow(-1);
-        let zelle1 = zeile.insertCell(0);
-        let zelle2 = zeile.insertCell(1);
-        let zelle3 = zeile.insertCell(2);
+let Sortierung = document.getElementById("Sortierung")
 
-        let img = document.createElement('img');
-        img.src = crossbows[i].Img;
-        img.alt = "Image not found"
-
-        zelle1.appendChild(img);
-        zelle2.innerHTML = "<h2>" + crossbows[i].Name + "</h2>"
-
-        let ul = document.createElement('ul');
-
-        for (let key in crossbows[i].Spezifikationen) {
-            let li = document.createElement('li');
-            li.textContent = key + ": " + crossbows[i].Spezifikationen[key];
-            ul.appendChild(li);
-        }
-        zelle2.appendChild(ul)
+function compare( a, b ) {
+    if ( a.last_nom < b.last_nom ){
+      return -1;
     }
-}
+    if ( a.last_nom > b.last_nom ){
+      return 1;
+    }
+    return 0;
+  }
 
-render_webside()
+let e = document.getElementById("Sortierung").value;
 
-function sort_a() {
-    crossbows.sort(function (a, b) {
-        return a.Name.localeCompare(b.Name);
-    });
-
-    render_webside();
-}
-
-function sort_d() {
-    crossbows.sort(function (a, b) {
-        return b.Name.localeCompare(a.Name);
-    });
-
-    render_webside();
-}
-
-function sort_zuggewicht_a() {
-    crossbows.sort(function (a, b) {
-        return a.Spezifikationen.Zuggewicht.localeCompare(b.Spezifikationen.Zuggewicht);
-    });
-
-    render_webside();
-}
-
-function sort_zuggewicht_d() {
-    crossbows.sort(function (a, b) {
-        return b.Spezifikationen.Zuggewicht.localeCompare(a.Spezifikationen.Zuggewicht);
-    });
-
-    render_webside();
+while (value === "Name (a-z)") {
+    crossbows.sort(compare)
 }
