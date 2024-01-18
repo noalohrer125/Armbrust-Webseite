@@ -10,20 +10,7 @@ const crossbows = [
             "Breite ungespannt": "23.5 cm",
             Zuggewicht: "340 lbs",
             Schussgeschwindigkeit: "439 km/h",
-            "Kraftaufwand beim Ziehn": "12 lbs",
-            Leerschusssicherung: "ja"
-        }
-    },
-    {
-        Img: "https://www.bogensportwelt.ch/media/image/product/347240/lg/excalibur-assassin-extreme-400-fps-realtree-excape-overwatch-package-recurvearmbrust.jpg",
-        Name: "EXCALIBUR Assassin Extreme",
-        Spezifikationen: {
-            Hersteller: "Excalibur",
-            Gewicht: "3.36 kg",
-            Länge: "81 cm",
-            Zuggewicht: "185 lbs",
-            Schussgeschwindigkeit: "439 km/h",
-            "Kraftaufwand beim Ziehn": "19 lbs",
+            "Kraftaufwand beim Ziehen": "12 lbs",
             Leerschusssicherung: "ja"
         }
     },
@@ -38,7 +25,7 @@ const crossbows = [
             "Breite gespannt": "12 cm",
             Zuggewicht: "250 lbs",
             Schussgeschwindigkeit: "363 km/h",
-            "Kraftaufwand beim Ziehn": "12 lbs",
+            "Kraftaufwand beim Ziehen": "12 lbs",
             Leerschusssicherung: "ja"
         }
     },
@@ -107,6 +94,7 @@ function render_webside() {
         let zelle1 = zeile.insertCell(0);
         let zelle2 = zeile.insertCell(1);
         let zelle3 = zeile.insertCell(2);
+        let zelle4 = zeile.insertCell(3);
 
         let img = document.createElement('img');
         img.src = crossbows[i].Img;
@@ -116,6 +104,7 @@ function render_webside() {
         zelle2.innerHTML = "<h2>" + crossbows[i].Name + "</h2>"
 
         let ul = document.createElement('ul');
+        ul.id = 'ul' + i;
 
         for (let key in crossbows[i].Spezifikationen) {
             let li = document.createElement('li');
@@ -123,6 +112,27 @@ function render_webside() {
             ul.appendChild(li);
         }
         zelle2.appendChild(ul)
+
+        let edit = document.createElement('button')
+        edit.textContent = 'edit'
+        edit.onclick = function() {
+            let list = document.getElementById('ul' + i)
+            list.contentEditable = true;
+        }
+
+        zelle3.appendChild(edit)
+
+        let br = document.createElement('br')
+        zelle3.appendChild(br)
+
+        let save = document.createElement('button')
+        save.textContent = 'save'
+        save.onclick = function() {
+            let list1 = document.getElementById('ul' + i)
+            list1.contentEditable = false;
+        }
+
+        zelle3.appendChild(save)
     }
 }
 
