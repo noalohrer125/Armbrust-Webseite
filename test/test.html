@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crossbows</title>
-    <link rel="stylesheet" href="../CSS/Stylesheet.css">
-    
+    <title>Crossbows-Test</title>
+    <link rel="stylesheet" href="../test/style.css">
+    <script src="../test/test.js" defer></script>
 </head>
+
 <body>
     <h1>Crossbows</h1>
     <div class="Sortierung">
-        <b>Sortierung</b>
-        <select name="Sortierung" id="Sortierung">
-            <option value="Auswahl">Ralevants</option>
-            <option value="Name (a-z)">Name (a-z)</option>
-            <option value="Name (a-z)">Name (z-a)</option>
-        </select>
+        <table>
+            <tr>
+                <td><b>Sortierung</b></td>
+                <td>
+                    <button id="input1" onclick="sort_a()">Name (a-z)</button>
+                    <button id="input2" onclick="sort_d()">Name (z-a)</button>
+                    <button id="input2" onclick="sort_zuggewicht_a()">Zuggewicht (aufsteigend)</button>
+                    <button id="input2" onclick="sort_zuggewicht_d()">Zuggewicht (absteigend)</button>
+                </td>
+            </tr>
+        </table>
     </div>
     <table id="table">
     </table>
-    <script src="../test/test.js"></script>
 </body>
 </html>

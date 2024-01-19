@@ -82,6 +82,9 @@ const crossbows = [
     },
 ];
 
+// Daten im Local Storage speichern
+localStorage.setItem('test', JSON.stringify(crossbows));
+
 function render_webside() {
     let tabelle = document.getElementById("table");
 
@@ -94,7 +97,6 @@ function render_webside() {
         let zelle1 = zeile.insertCell(0);
         let zelle2 = zeile.insertCell(1);
         let zelle3 = zeile.insertCell(2);
-        let zelle4 = zeile.insertCell(3);
 
         let img = document.createElement('img');
         img.src = crossbows[i].Img;
@@ -125,11 +127,22 @@ function render_webside() {
         let br = document.createElement('br')
         zelle3.appendChild(br)
 
+        let br1 = document.createElement('br')
+        zelle3.appendChild(br1)
+
         let save = document.createElement('button')
         save.textContent = 'save'
         save.onclick = function() {
-            let list1 = document.getElementById('ul' + i)
+            update(i);
+        }
+
+        function update(x) {
+            let list1 = document.getElementById('ul' + x)
+
             list1.contentEditable = false;
+
+            let listValues = Array.from(list1.querySelectorAll('li')).map(li => li.textContent);
+            localStorage.setItem('ul'[x], JSON.stringify(listValues));
         }
 
         zelle3.appendChild(save)
