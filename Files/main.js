@@ -89,10 +89,8 @@ function render_webside() {
     let tabelle = document.getElementById("table");
 
     while (tabelle.rows.length > 0) {
-    tabelle.deleteRow(0);
+        tabelle.deleteRow(0);
     }
-
-    let cb = localStorage.getItem('test')
 
     for (let i = 0; i < crossbows.length; i++) {
         let zeile = tabelle.insertRow(-1);
@@ -112,16 +110,29 @@ function render_webside() {
 
         let cb = localStorage.getItem('u' + i)
 
-        for (let key in crossbows[i].Spezifikationen) {
-            let li = document.createElement('li');
-            li.textContent = key + ": " + crossbows[i].Spezifikationen[key];
-            ul.appendChild(li);
+        if (cb) {
+            let cbarray = cb.split('"').join("").split('[').join("").split(']').join("").split(',')
+
+            for (let n = 0; n < cbarray.length; n++) {
+                let x = document.createElement('li')
+                x.appendChild(document.createTextNode(cbarray[n]));
+                ul.appendChild(x)
+            }
         }
+        else {
+            for (let key in crossbows[i].Spezifikationen) {
+                let li = document.createElement('li');
+                li.textContent = key + ": " + crossbows[i].Spezifikationen[key];
+                ul.appendChild(li);
+            }
+            zelle2.appendChild(ul)
+        }
+
         zelle2.appendChild(ul)
 
         let edit = document.createElement('button')
         edit.textContent = 'edit'
-        edit.onclick = function() {
+        edit.onclick = function () {
             let list = document.getElementById('ul' + i)
             list.contentEditable = true;
         }
@@ -136,7 +147,7 @@ function render_webside() {
 
         let save = document.createElement('button')
         save.textContent = 'save'
-        save.onclick = function() {
+        save.onclick = function () {
             update(i);
         }
 

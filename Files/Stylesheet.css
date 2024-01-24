@@ -1,5 +1,6 @@
 * {
     background-color: #bdbdbd;
+    border-radius: 8px;
 }
 
 h1 {
@@ -31,11 +32,16 @@ ul {
     font-size: 20px;
 }
 
-.Sortierung {
-    font-size: 35px;
+button {
+    font-size: 15px;
 }
 
-button {
-    border-radius: 10px;
-    font-size: 15px;
+button:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+.td {
+    padding: 10px;
+    font-size: 30px;
 }
