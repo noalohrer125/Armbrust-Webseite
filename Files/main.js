@@ -1,6 +1,6 @@
 const crossbows = [
     {
-        Img: "https://ravincrossbows.com/media/catalog/product/r/2/r26x_1.png",
+        Img: "https://huegisport.ch/wp-content/uploads/2022/06/Huegi-Sport-AG_Bogensport_Pfeilbogen_Armbrust_RAVIN-COMPOUND-CROSSBOW-SET-R29X-SNIPER-PACK.webp",
         Name: "Ravin R26",
         Spezifikationen: {
             Hersteller: "Ravin",
@@ -82,7 +82,7 @@ const crossbows = [
     },
 ];
 
-// Daten im Local Storage speichern
+// Daten des Objekt crossbows im Local Storage speichern
 localStorage.setItem('test', JSON.stringify(crossbows));
 
 function render_webside() {
@@ -91,6 +91,8 @@ function render_webside() {
     while (tabelle.rows.length > 0) {
     tabelle.deleteRow(0);
     }
+
+    let cb = localStorage.getItem('test')
 
     for (let i = 0; i < crossbows.length; i++) {
         let zeile = tabelle.insertRow(-1);
@@ -107,6 +109,8 @@ function render_webside() {
 
         let ul = document.createElement('ul');
         ul.id = 'ul' + i;
+
+        let cb = localStorage.getItem('u' + i)
 
         for (let key in crossbows[i].Spezifikationen) {
             let li = document.createElement('li');
@@ -142,7 +146,7 @@ function render_webside() {
             list1.contentEditable = false;
 
             let listValues = Array.from(list1.querySelectorAll('li')).map(li => li.textContent);
-            localStorage.setItem('ul'[x], JSON.stringify(listValues));
+            localStorage.setItem('u' + i, JSON.stringify(listValues));
         }
 
         zelle3.appendChild(save)

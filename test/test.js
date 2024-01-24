@@ -1,6 +1,6 @@
-const crossbows1 = [
+const crossbows = [
     {
-        Img: "https://ravincrossbows.com/media/catalog/product/r/2/r26x_1.png",
+        Img: "https://huegisport.ch/wp-content/uploads/2022/06/Huegi-Sport-AG_Bogensport_Pfeilbogen_Armbrust_RAVIN-COMPOUND-CROSSBOW-SET-R29X-SNIPER-PACK.webp",
         Name: "Ravin R26",
         Spezifikationen: {
             Hersteller: "Ravin",
@@ -82,8 +82,8 @@ const crossbows1 = [
     },
 ];
 
-// Daten im Local Storage speichern
-localStorage.setItem('test', JSON.stringify(crossbows1));
+// Daten des Objekt crossbows im Local Storage speichern
+localStorage.setItem('test', JSON.stringify(crossbows));
 
 function render_webside() {
     let tabelle = document.getElementById("table");
@@ -92,14 +92,13 @@ function render_webside() {
     tabelle.deleteRow(0);
     }
 
-    let crossbows = JSON.parse(localStorage.getItem('Test'));
+    let cb = localStorage.getItem('test')
 
     for (let i = 0; i < crossbows.length; i++) {
         let zeile = tabelle.insertRow(-1);
         let zelle1 = zeile.insertCell(0);
         let zelle2 = zeile.insertCell(1);
         let zelle3 = zeile.insertCell(2);
-        let zelle4 = zeile.insertCell(3);
 
         let img = document.createElement('img');
         img.src = crossbows[i].Img;
@@ -110,6 +109,8 @@ function render_webside() {
 
         let ul = document.createElement('ul');
         ul.id = 'ul' + i;
+
+        let cb = localStorage.getItem('u' + i)
 
         for (let key in crossbows[i].Spezifikationen) {
             let li = document.createElement('li');
@@ -130,6 +131,9 @@ function render_webside() {
         let br = document.createElement('br')
         zelle3.appendChild(br)
 
+        let br1 = document.createElement('br')
+        zelle3.appendChild(br1)
+
         let save = document.createElement('button')
         save.textContent = 'save'
         save.onclick = function() {
@@ -142,7 +146,7 @@ function render_webside() {
             list1.contentEditable = false;
 
             let listValues = Array.from(list1.querySelectorAll('li')).map(li => li.textContent);
-            localStorage.setItem('Test'[x], JSON.stringify(listValues));
+            localStorage.setItem('u' + i, JSON.stringify(listValues));
         }
 
         zelle3.appendChild(save)
