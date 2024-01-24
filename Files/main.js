@@ -82,96 +82,96 @@ const crossbows = [
     },
 ];
 
-// Daten des Objekt crossbows im Local Storage speichern
-localStorage.setItem('test', JSON.stringify(crossbows));
+// Daten des Objekts crossbows im Local Storage speichern
+localStorage.setItem('crossbows', JSON.stringify(crossbows));
 
-function render_webside() {
-    let tabelle = document.getElementById("table");
-
-    while (tabelle.rows.length > 0) {
-        tabelle.deleteRow(0);
+// Function to render hole Webside
+function render_website() {
+    let table = document.getElementById("table");
+    // clear Table
+    while (table.rows.length > 0) {
+        table.deleteRow(0);
     }
-
+    // fill table with new data
     for (let i = 0; i < crossbows.length; i++) {
-        let zeile = tabelle.insertRow(-1);
-        let zelle1 = zeile.insertCell(0);
-        let zelle2 = zeile.insertCell(1);
-        let zelle3 = zeile.insertCell(2);
+        let row = table.insertRow(-1);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
 
         let img = document.createElement('img');
         img.src = crossbows[i].Img;
-        img.alt = "Image not found"
+        img.alt = "Image not found";
 
-        zelle1.appendChild(img);
-        zelle2.innerHTML = "<h2>" + crossbows[i].Name + "</h2>"
+        cell1.appendChild(img);
+        cell2.innerHTML = "<h2>" + crossbows[i].Name + "</h2>";
 
         let ul = document.createElement('ul');
-        ul.id = 'ul' + i;
+        ul.id = crossbows[i].Name; // set ID to name of Crossbow
 
-        let cb = localStorage.getItem('u' + i)
+        let storedData = localStorage.getItem(crossbows[i].Name);
 
-        if (cb) {
-            let cbarray = cb.split('"').join("").split('[').join("").split(']').join("").split(',')
-
-            for (let n = 0; n < cbarray.length; n++) {
-                let x = document.createElement('li')
-                x.appendChild(document.createTextNode(cbarray[n]));
-                ul.appendChild(x)
+        if (storedData) {
+            let storedValues = JSON.parse(storedData);
+            for (let n = 0; n < storedValues.length; n++) {
+                let li = document.createElement('li');
+                li.appendChild(document.createTextNode(storedValues[n]));
+                ul.appendChild(li);
             }
-        }
-        else {
+        } else {
             for (let key in crossbows[i].Spezifikationen) {
                 let li = document.createElement('li');
                 li.textContent = key + ": " + crossbows[i].Spezifikationen[key];
                 ul.appendChild(li);
             }
-            zelle2.appendChild(ul)
+            cell2.appendChild(ul);
         }
 
-        zelle2.appendChild(ul)
+        cell2.appendChild(ul);
 
-        let edit = document.createElement('button')
-        edit.textContent = 'edit'
+        let edit = document.createElement('button');
+        edit.textContent = 'edit';
         edit.onclick = function () {
-            let list = document.getElementById('ul' + i)
+            let list = document.getElementById(crossbows[i].Name);
             list.contentEditable = true;
-        }
+        };
 
-        zelle3.appendChild(edit)
+        cell3.appendChild(edit);
 
-        let br = document.createElement('br')
-        zelle3.appendChild(br)
+        let br = document.createElement('br');
+        cell3.appendChild(br);
 
-        let br1 = document.createElement('br')
-        zelle3.appendChild(br1)
+        let br1 = document.createElement('br');
+        cell3.appendChild(br1);
 
-        let save = document.createElement('button')
-        save.textContent = 'save'
+        let save = document.createElement('button');
+        save.textContent = 'save';
         save.onclick = function () {
-            update(i);
+            // give the name of the crossbow to the update function
+            update(crossbows[i].Name);
+        };
+
+        function update(name) {
+            let list = document.getElementById(name);
+
+            list.contentEditable = false;
+
+            let listValues = Array.from(list.querySelectorAll('li')).map(li => li.textContent);
+            localStorage.setItem(name, JSON.stringify(listValues));
         }
 
-        function update(x) {
-            let list1 = document.getElementById('ul' + x)
-
-            list1.contentEditable = false;
-
-            let listValues = Array.from(list1.querySelectorAll('li')).map(li => li.textContent);
-            localStorage.setItem('u' + i, JSON.stringify(listValues));
-        }
-
-        zelle3.appendChild(save)
+        cell3.appendChild(save);
     }
 }
 
-render_webside()
+render_website();
 
 function sort_a() {
     crossbows.sort(function (a, b) {
         return a.Name.localeCompare(b.Name);
     });
 
-    render_webside();
+    render_website();
 }
 
 function sort_d() {
@@ -179,7 +179,7 @@ function sort_d() {
         return b.Name.localeCompare(a.Name);
     });
 
-    render_webside();
+    render_website();
 }
 
 function sort_zuggewicht_a() {
@@ -187,7 +187,7 @@ function sort_zuggewicht_a() {
         return a.Spezifikationen.Zuggewicht.localeCompare(b.Spezifikationen.Zuggewicht);
     });
 
-    render_webside();
+    render_website();
 }
 
 function sort_zuggewicht_d() {
@@ -195,5 +195,5 @@ function sort_zuggewicht_d() {
         return b.Spezifikationen.Zuggewicht.localeCompare(a.Spezifikationen.Zuggewicht);
     });
 
-    render_webside();
+    render_website();
 }
