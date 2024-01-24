@@ -130,7 +130,7 @@ function render_website() {
         cell2.appendChild(ul);
 
         let edit = document.createElement('button');
-        edit.textContent = 'edit';
+        edit.textContent = '✏️ edit';
         edit.onclick = function () {
             let list = document.getElementById(crossbows[i].Name);
             list.contentEditable = true;
@@ -145,7 +145,7 @@ function render_website() {
         cell3.appendChild(br1);
 
         let save = document.createElement('button');
-        save.textContent = 'save';
+        save.textContent = '✔️ save';
         save.onclick = function () {
             // give the name of the crossbow to the update function
             update(crossbows[i].Name);
