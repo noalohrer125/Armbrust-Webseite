@@ -1,4 +1,4 @@
-const crossbows = [
+const standart_crossbows = [
     {
         Img: "https://huegisport.ch/wp-content/uploads/2022/06/Huegi-Sport-AG_Bogensport_Pfeilbogen_Armbrust_RAVIN-COMPOUND-CROSSBOW-SET-R29X-SNIPER-PACK.webp",
         Name: "Ravin R26",
@@ -83,7 +83,21 @@ const crossbows = [
 ];
 
 // Daten des Objekts crossbows im Local Storage speichern
-localStorage.setItem('crossbows', JSON.stringify(crossbows));
+localStorage.setItem('crossbows', JSON.stringify(standart_crossbows));
+
+let default_crossbows = JSON.parse(localStorage.getItem('crossbows'));
+
+let updated_crossbows
+
+if (localStorage.getItem('crossbows1')) {
+    updated_crossbows = localStorage.getItem('crossbows1')
+}
+
+let crossbows = default_crossbows
+
+if (updated_crossbows) {
+    crossbows = JSON.parse(updated_crossbows)
+}
 
 // Function to render hole Webside
 function render_website() {
@@ -124,6 +138,7 @@ function render_website() {
                 li.textContent = key + ": " + crossbows[i].Spezifikationen[key];
                 ul.appendChild(li);
             }
+
             cell2.appendChild(ul);
         }
 
@@ -195,4 +210,36 @@ function sort_zuggewicht_d() {
     });
 
     render_website();
+}
+
+function add_new_crossbow() {
+    document.getElementById('crossbowForm').style.display = 'block';
+}
+
+function save_form() {
+    document.getElementById('crossbowForm').style.display = 'none';
+
+    let imglink = document.getElementById(1).value
+    let name = document.getElementById(2).value
+    let specifications = document.getElementById(3).value.split('\n')
+
+    let specificationsObject = {};
+    specifications.forEach(spec => {
+        let [key, value] = spec.split(':').map(s => s.trim()); // Zerlegt jede Zeile in Schlüssel und Wert und trimmt Leerzeichen
+        specificationsObject[key] = value; // Fügt Schlüssel und Wert zum Objekt hinzu
+    });
+
+    let new_object = {
+        Img: imglink,
+        Name: name,
+        Spezifikationen: specificationsObject
+    };
+
+    crossbows.push(new_object)
+
+    localStorage.setItem('crossbows1', JSON.stringify(crossbows))
+
+    document.getElementById('1').value = '';
+    document.getElementById('2').value = '';
+    document.getElementById('3').value = '';
 }

@@ -1,6 +1,7 @@
 * {
     background-color: #bdbdbd;
-    border-radius: 8px;
+    border-radius: 6px;
+    font-family: "Lucida Console", sans-serif, monospace;
 }
 
 h1 {
@@ -21,7 +22,7 @@ h3 {
 
 img {
     width: 400px;
-    border-radius: 80px;
+    border-radius: 60px;
 }
 
 table {
@@ -44,4 +45,35 @@ button:hover {
 .td {
     padding: 10px;
     font-size: 30px;
+}
+
+#button_to_add {
+    font-size: 40px;
+}
+
+.button_to_add {
+    text-align: center;
+}
+
+button:active {
+    background-color: rgb(110, 220, 255);
+}
+
+#crossbowForm {
+    text-align: center;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+.form {
+    background-color: skyblue;
+}
+
+.form_input {
+    width: auto;
+    height: auto;
+}
+
+label {
+    font-size: 20px;
 }
