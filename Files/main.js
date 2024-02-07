@@ -82,15 +82,17 @@ const standart_crossbows = [
     },
 ];
 
-// Daten des Objekts crossbows im Local Storage speichern
-localStorage.setItem('crossbows', JSON.stringify(standart_crossbows));
+if (!localStorage.getItem('crossbows')) {
+    // Daten des Objekts crossbows im Local Storage speichern
+    localStorage.setItem('crossbows', JSON.stringify(standart_crossbows));
+}
 
 let default_crossbows = JSON.parse(localStorage.getItem('crossbows'));
 
 let updated_crossbows
 
-if (localStorage.getItem('crossbows1')) {
-    updated_crossbows = localStorage.getItem('crossbows1')
+if (localStorage.getItem('crossbows')) {
+    updated_crossbows = localStorage.getItem('crossbows')
 }
 
 let crossbows = default_crossbows
@@ -168,11 +170,27 @@ function render_website() {
 
         function update(name) {
             let list = document.getElementById(name);
-
             list.contentEditable = false;
-
-            let listValues = Array.from(list.querySelectorAll('li')).map(li => li.textContent);
-            localStorage.setItem(name, JSON.stringify(listValues));
+        
+            // Finden des entsprechenden Crossbow-Objekts im Array
+            let crossbowToUpdate = crossbows.find(crossbow => crossbow.Name === name);
+            if (!crossbowToUpdate) return; // Beenden, falls das Crossbow-Objekt nicht gefunden wurde
+        
+            let listValues = Array.from(list.querySelectorAll('li')).map(li => {
+                // Extrahieren von Schlüssel und Wert aus dem Listenelement
+                let [key, value] = li.textContent.split(":").map(s => s.trim());
+                return { key, value };
+            });
+        
+            // Aktualisieren der Spezifikationen des gefundenen Crossbow-Objekts
+            listValues.forEach(({ key, value }) => {
+                if (key in crossbowToUpdate.Spezifikationen) {
+                    crossbowToUpdate.Spezifikationen[key] = value;
+                }
+            });
+        
+            // Speichern des aktualisierten crossbows Arrays im LocalStorage
+            localStorage.setItem('crossbows', JSON.stringify(crossbows));
         }
         cell3.appendChild(save);
     }
@@ -245,7 +263,7 @@ function save_form() {
 
     crossbows.push(new_object);
 
-    localStorage.setItem('crossbows1', JSON.stringify(crossbows));
+    localStorage.setItem('crossbows', JSON.stringify(crossbows));
 
     document.getElementById('1').value = '';
     document.getElementById('2').value = '';
