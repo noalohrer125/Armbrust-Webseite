@@ -159,7 +159,6 @@ function render_website() {
             let listValues = Array.from(list.querySelectorAll('li')).map(li => li.textContent);
             localStorage.setItem(name, JSON.stringify(listValues));
         }
-
         cell3.appendChild(save);
     }
 }
