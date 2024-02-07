@@ -219,15 +219,23 @@ function add_new_crossbow() {
 function save_form() {
     document.getElementById('crossbowForm').style.display = 'none';
 
-    let imglink = document.getElementById(1).value
-    let name = document.getElementById(2).value
-    let specifications = document.getElementById(3).value.split('\n')
+    let imglink = document.getElementById(1).value;
+    let name = document.getElementById(2).value;
+    let specifications = document.getElementById(3).value.split('\n');
 
     let specificationsObject = {};
     specifications.forEach(spec => {
-        let [key, value] = spec.split(':').map(s => s.trim()); // Zerlegt jede Zeile in Schlüssel und Wert und trimmt Leerzeichen
-        specificationsObject[key] = value; // Fügt Schlüssel und Wert zum Objekt hinzu
+        let [key, value] = spec.split(':').map(s => s.trim());
+        if (key === "Zuggewicht" && !value) {
+            value = "1 lbs"; // Standardwert, wenn kein Zuggewicht angegeben
+        }
+        specificationsObject[key] = value;
     });
+
+    // Überprüfen, ob Zuggewicht im Objekt fehlt und wenn ja Standardwert (1 lbs) setzen
+    if (!specificationsObject.Zuggewicht) {
+        specificationsObject.Zuggewicht = "1 lbs"; // Standardwert für Zuggewicht
+    }
 
     let new_object = {
         Img: imglink,
@@ -235,9 +243,9 @@ function save_form() {
         Spezifikationen: specificationsObject
     };
 
-    crossbows.push(new_object)
+    crossbows.push(new_object);
 
-    localStorage.setItem('crossbows1', JSON.stringify(crossbows))
+    localStorage.setItem('crossbows1', JSON.stringify(crossbows));
 
     document.getElementById('1').value = '';
     document.getElementById('2').value = '';
