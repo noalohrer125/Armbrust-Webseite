@@ -176,18 +176,15 @@ function render_website() {
             let crossbowToUpdate = crossbows.find(crossbow => crossbow.Name === name);
             if (!crossbowToUpdate) return; // Beenden, falls das Crossbow-Objekt nicht gefunden wurde
         
-            let listValues = Array.from(list.querySelectorAll('li')).map(li => {
-                // Extrahieren von Schlüssel und Wert aus dem Listenelement
+            // Erstellen eines neuen Spezifikationen-Objekts aus der bearbeiteten Liste
+            let updatedSpecs = {};
+            Array.from(list.querySelectorAll('li')).forEach(li => {
                 let [key, value] = li.textContent.split(":").map(s => s.trim());
-                return { key, value };
+                updatedSpecs[key] = value;
             });
         
-            // Aktualisieren der Spezifikationen des gefundenen Crossbow-Objekts
-            listValues.forEach(({ key, value }) => {
-                if (key in crossbowToUpdate.Spezifikationen) {
-                    crossbowToUpdate.Spezifikationen[key] = value;
-                }
-            });
+            // Ersetzen der alten Spezifikationen durch die aktualisierten
+            crossbowToUpdate.Spezifikationen = updatedSpecs;
         
             // Speichern des aktualisierten crossbows Arrays im LocalStorage
             localStorage.setItem('crossbows', JSON.stringify(crossbows));
