@@ -40,7 +40,8 @@ button {
 }
 
 button:hover {
-    background-color: white;
+    background-color: rgb(0, 0, 0);
+    color: white;
     cursor: pointer;
 }
 
@@ -58,7 +59,8 @@ button:hover {
 }
 
 button:active {
-    background-color: rgb(110, 220, 255);
+    background-color: rgb(77, 0, 0);
+    color: white;
 }
 
 #crossbowForm {
@@ -69,7 +71,7 @@ button:active {
 }
 
 .form {
-    background-color: skyblue;
+    background-color: rgb(0, 0, 0);
 }
 
 .form_input {
@@ -78,12 +80,20 @@ button:active {
 }
 
 label {
+    color: white;
     font-size: 20px;
-    background-color: skyblue;
+    background-color: rgb(0, 0, 0);
 }
 
 .save_form {
-    background-color: skyblue;
+    color: white;
+    background-color: rgb(0, 0, 0);
     text-align: center;
     padding-top: 20px;
+}
+
+#save_form {
+    font-size: 20px;
+    width: 100px;
+    height: 40px;
 }
