@@ -189,6 +189,7 @@ function render_website() {
             // Speichern des aktualisierten crossbows Arrays im LocalStorage
             localStorage.setItem('crossbows', JSON.stringify(crossbows));
         }
+        
         cell3.appendChild(save);
     }
 }
@@ -265,4 +266,6 @@ function save_form() {
     document.getElementById('1').value = '';
     document.getElementById('2').value = '';
     document.getElementById('3').value = '';
+
+    render_website()
 }

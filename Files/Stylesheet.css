@@ -60,7 +60,8 @@ button:active {
 }
 
 #crossbowForm {
-    text-align: center;
+    padding: 100px 100px 100px 100px;
+    text-align: left;
     margin-left: 400px;
     margin-right: 400px;
 }
@@ -76,4 +77,11 @@ button:active {
 
 label {
     font-size: 20px;
+    background-color: skyblue;
+}
+
+.save_form {
+    background-color: skyblue;
+    text-align: center;
+    padding-top: 20px;
 }
