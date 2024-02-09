@@ -233,13 +233,28 @@ function add_new_crossbow() {
 }
 
 function save_form() {
-    document.getElementById('crossbowForm').style.display = 'none';
+    let imglink
+    let name
+    let specificationsObject
 
-    let imglink = document.getElementById(1).value;
-    let name = document.getElementById(2).value;
+    imglink = document.getElementById(1).value;
+    name = document.getElementById(2).value;
+
     let specifications = document.getElementById(3).value.split('\n');
 
-    let specificationsObject = {};
+    // Prüft, ob ein Name eingegeben wurde
+    if (!name) {
+        window.alert('Name undefined --> Enter a Name to Continue')
+        return 0;
+    }
+
+    // Prüft, ob ein Doppelpunkt genau einmal im ersten String des Arrays vorkommt
+    if (!(specifications[0].indexOf(':') === specifications[0].lastIndexOf(':') && specifications[0].indexOf(':') !== -1)) {
+        window.alert('No Specification defined, or false definition of Specification');
+        return 0;
+    }
+
+    specificationsObject = {};
     specifications.forEach(spec => {
         let [key, value] = spec.split(':').map(s => s.trim());
         if (key === "Zuggewicht" && !value) {
@@ -252,6 +267,8 @@ function save_form() {
     if (!specificationsObject.Zuggewicht) {
         specificationsObject.Zuggewicht = "1 lbs"; // Standardwert für Zuggewicht
     }
+
+    document.getElementById('crossbowForm').style.display = 'none';
 
     let new_object = {
         Img: imglink,
