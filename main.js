@@ -88,7 +88,6 @@ if (!localStorage.getItem('crossbows')) {
 }
 
 let default_crossbows = JSON.parse(localStorage.getItem('crossbows'));
-
 let updated_crossbows
 
 if (localStorage.getItem('crossbows')) {
